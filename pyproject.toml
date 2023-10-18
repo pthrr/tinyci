@@ -1,0 +1,96 @@
+[tool.black]
+line-length = 110
+target-version = ['py37']
+extend-exclude = '''
+/(
+    classes
+    |utilities
+    |tools
+)/
+'''
+
+[tool.isort]
+line_length = 110
+py_version = 37
+extend_skip = ["classes", "utilities", "tools"]
+profile = "black"
+skip_gitignore = true
+atomic = true
+
+[tool.pytest.ini_options]
+addopts = "-vv -s --strict-config --strict-markers"
+pythonpath = ["src"]
+testpaths = ["tests"]
+markers = [
+  "unit: unit test for single functions and classes",
+  "integration: test integrating several units without hardware dependencies or external components",
+  "system: test running the full system on real hardware but without external components",
+  "conformance: test checking the formal specification against a customer use case",
+  "reliability: test checking the reliability of a customer use case",
+  "performance: test running a resource critical use case scenario",
+  "acceptance: test running final checks before customer release",
+]
+log_cli = true
+log_cli_level = "INFO"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+[tool.mypy]
+python_version = 3.7
+# disallow_untyped_defs = true
+# warn_return_any = true
+show_error_codes = true
+# no_implicit_optional = true
+# check_untyped_defs = true
+# warn_unused_ignores = true
+allow_redefinition = false
+check_untyped_defs = true
+ignore_errors = false
+ignore_missing_imports = true
+implicit_reexport = false
+local_partial_types = true
+no_implicit_optional = true
+strict_equality = true
+strict_optional = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[tool.ruff]
+line-length = 110
+target-version = "py37"
+ignore = [
+  "A003",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+  "E501",
+  "RET505",
+  "RET506",
+  "COM812",
+]
+extend-select = [
+  "I",
+  "N",
+  "UP",
+  "FBT",
+  "COM",
+  "C4",
+  "ISC",
+  "G",
+  "PIE",
+  "T20",
+  "PT",
+  "RET",
+  "SLF",
+  "SIM",
+  "ARG",
+  "PTH",
+  "B",
+  "A",
+  "PL",
+  "NPY",
+]
+extend-exclude = ["scripts", "tools", "tests", "doc", "venv"]
